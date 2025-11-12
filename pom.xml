@@ -19,6 +19,7 @@
 		<java.version>17</java.version>
 		<spring.boot.version>3.5.7</spring.boot.version> <!-- keep compatible with spring.cloud.version-->
 		<spring.cloud.version>2025.0.0</spring.cloud.version> <!-- keep compatible with spring.boot.version-->
+		<lombok.version>1.18.38</lombok.version>
 	</properties>
 
 	<dependencyManagement>
@@ -40,26 +41,41 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+			<!-- Lombok -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<build>
 		<plugins>
+			<!-- Compiler plugin z Lombok -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
 				<configuration>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
 						</path>
 					</annotationProcessorPaths>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+
+			<!-- Spring Boot plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring.boot.version}</version>
 				<configuration>
 					<excludes>
 						<exclude>
@@ -71,5 +87,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
