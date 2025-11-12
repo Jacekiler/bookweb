@@ -8,12 +8,18 @@
 		<version>3.5.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>com.jszarski</groupId>
+	<artifactId>bookweb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>BookWeb</name>
 	<description>Spring boot project for books' ratings and recommendations</description>
 
+	<modules>
+		<module>book-api</module>
+		<module>book-service</module>
+		<module>notification-service</module>
+	</modules>
 
 	<properties>
 		<java.version>17</java.version>
