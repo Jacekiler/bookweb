@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +32,10 @@ public class BookService {
         var book = bookMapper.fromAddDto(bookAddDTO);
         var saved = bookRepository.save(book);
         return bookMapper.toBookDto(saved);
+    }
+
+    public void deleteBook(UUID id){
+        bookRepository.deleteById(id);
     }
 
     @Transactional

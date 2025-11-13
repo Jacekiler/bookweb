@@ -7,6 +7,8 @@ import com.jszarski.bookapi.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/book")
 @RequiredArgsConstructor
@@ -22,6 +24,11 @@ public class BookController {
     @PostMapping
     public BookDTO addBook(@RequestBody BookAddDTO bookAddDTO){
         return bookService.addBook(bookAddDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable("id") UUID id) {
+        bookService.deleteBook(id);
     }
 
     @PostMapping("/rate")

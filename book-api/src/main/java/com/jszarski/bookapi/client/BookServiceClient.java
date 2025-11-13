@@ -4,10 +4,9 @@ import com.jszarski.bookapi.model.dto.BookAddDTO;
 import com.jszarski.bookapi.model.dto.BookDTO;
 import com.jszarski.bookapi.model.dto.BookRatingDTO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @FeignClient(
         name = "book-service",
@@ -20,6 +19,9 @@ public interface BookServiceClient {
 
     @PostMapping("/book")
     BookDTO addBook(@RequestBody BookAddDTO bookAddDTO);
+
+    @DeleteMapping("/book/{id}")
+    void deleteBook(@PathVariable("id") UUID id);
 
     @PostMapping("/book/rate")
     void rate(@RequestBody BookRatingDTO bookRatingDTO);

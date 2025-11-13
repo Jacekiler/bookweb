@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 @Log4j2
@@ -32,6 +34,15 @@ public class BookService {
             // TODO implement
             log.warn("Unsupported operation. Ex: {}", e.getMessage());
             return null;
+        }
+    }
+
+    public void deleteBook(UUID id){
+        try {
+            bookServiceClient.deleteBook(id);
+        } catch (Exception e){
+            // TODO implement
+            log.warn("Unsupported operation. Ex: {}", e.getMessage());
         }
     }
 
