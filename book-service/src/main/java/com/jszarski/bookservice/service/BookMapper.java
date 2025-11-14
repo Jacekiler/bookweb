@@ -14,7 +14,7 @@ public class BookMapper {
                 .name(book.getName())
                 .author(book.getAuthor())
                 .genre(book.getGenre())
-                .avgRating(book.getRatingAvg())
+                .ratingAvg(book.getRatingAvg())
                 .rateCount(book.getRatingCount())
                 .build();
     }

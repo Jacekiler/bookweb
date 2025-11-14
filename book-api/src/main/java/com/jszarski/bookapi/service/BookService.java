@@ -18,6 +18,7 @@ public class BookService {
     private final BookServiceClient bookServiceClient;
 
     public BookDTO getBook(String name) {
+        log.info("Getting book by name {}", name);
         try {
             return bookServiceClient.getBook(name);
         } catch (Exception e){
@@ -28,6 +29,7 @@ public class BookService {
     }
 
     public BookDTO addBook(BookAddDTO bookAddDTO){
+        log.info("Adding book {}", bookAddDTO.getName());
         try {
             return bookServiceClient.addBook(bookAddDTO);
         } catch (Exception e){
@@ -38,6 +40,7 @@ public class BookService {
     }
 
     public void deleteBook(UUID id){
+        log.info("Deleting book {}", id);
         try {
             bookServiceClient.deleteBook(id);
         } catch (Exception e){
@@ -47,6 +50,7 @@ public class BookService {
     }
 
     public void rate(BookRatingDTO bookRatingDTO) {
+        log.info("Rating book {}", bookRatingDTO.getName());
         try {
             bookServiceClient.rate(bookRatingDTO);
         } catch (Exception e){

@@ -6,11 +6,13 @@ import com.jszarski.bookservice.model.dto.BookDTO;
 import com.jszarski.bookservice.model.dto.BookRatingDTO;
 import com.jszarski.bookservice.service.BookService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 import java.util.UUID;
 
+@Log4j2
 @RestController
 @RequestMapping("/book")
 @RequiredArgsConstructor
@@ -20,21 +22,25 @@ public class BookController {
 
     @GetMapping("/{name}")
     public Optional<BookDTO> getBookByName(@PathVariable("name") String name) {
+        log.info("GET /book/{}", name);
         return bookService.getBook(name);
     }
 
     @PostMapping
     public BookDTO addBook(@RequestBody BookAddDTO bookAddDTO){
+        log.info("POST /book");
         return bookService.addBook(bookAddDTO);
     }
 
     @DeleteMapping("/{id}")
     public void deleteBook(@PathVariable("id") UUID id) {
+        log.info("DELETE /book/{}", id);
         bookService.deleteBook(id);
     }
 
     @PostMapping("/rate")
-    public void rate(@RequestBody BookRatingDTO bookRating){
-        bookService.rate(bookRating);
+    public void rate(@RequestBody BookRatingDTO bookRatingDTO){
+        log.info("POST /book/rate");
+        bookService.rate(bookRatingDTO);
     }
 }

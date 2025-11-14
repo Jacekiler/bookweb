@@ -3,9 +3,11 @@ package com.jszarski.bookapi.client;
 import com.jszarski.bookapi.model.dto.BookAddDTO;
 import com.jszarski.bookapi.model.dto.BookDTO;
 import com.jszarski.bookapi.model.dto.BookRatingDTO;
+import com.jszarski.bookapi.model.dto.SubscriptionDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @FeignClient(
@@ -25,4 +27,10 @@ public interface BookServiceClient {
 
     @PostMapping("/book/rate")
     void rate(@RequestBody BookRatingDTO bookRatingDTO);
+
+    @PostMapping("/subscription")
+    void subscribe(@RequestBody SubscriptionDTO subscriptionDTO);
+
+    @GetMapping("/subscription/{email}")
+    List<SubscriptionDTO> getSubscriptions(@PathVariable("email") String email);
 }

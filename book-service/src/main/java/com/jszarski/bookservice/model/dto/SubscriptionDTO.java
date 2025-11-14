@@ -1,19 +1,22 @@
-package com.jszarski.bookapi.model.dto;
+package com.jszarski.bookservice.model.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookDTO {
+public class SubscriptionDTO {
     private UUID id;
-    private String name;
-    private String author;
+    private String email;
     private String genre;
-    private int rateCount;
+    private String author;
     private Double ratingAvg;
+    private SubscriptionType type;
 }
+

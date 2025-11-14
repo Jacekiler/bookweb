@@ -35,6 +35,7 @@ public class BookService {
     }
 
     public void deleteBook(UUID id){
+        log.info("Deliting book {}", id);
         bookRepository.deleteById(id);
     }
 

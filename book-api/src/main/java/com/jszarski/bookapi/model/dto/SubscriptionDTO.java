@@ -9,11 +9,12 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookDTO {
+public class SubscriptionDTO {
     private UUID id;
-    private String name;
-    private String author;
+    private String email;
     private String genre;
-    private int rateCount;
+    private String author;
     private Double ratingAvg;
+    private SubscriptionType type;
 }
+

@@ -15,5 +15,5 @@ public class BookDTO {
     private String author;
     private String genre;
     private int rateCount;
-    private Double avgRating;
+    private Double ratingAvg;
 }
