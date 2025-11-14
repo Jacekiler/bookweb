@@ -5,14 +5,14 @@ import com.jszarski.bookapi.model.dto.BookAddDTO;
 import com.jszarski.bookapi.model.dto.BookDTO;
 import com.jszarski.bookapi.model.dto.BookRatingDTO;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-@Log4j2
+@Slf4j
 public class BookService {
 
     private final BookServiceClient bookServiceClient;

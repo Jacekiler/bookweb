@@ -3,3 +3,6 @@ spring:
     name: notification-service
   main:
     web-application-type: none
+  kafka:
+    bootstrap-servers: localhost:9092
+    group-id: notification-service

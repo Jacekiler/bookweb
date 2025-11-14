@@ -5,12 +5,12 @@ import com.jszarski.bookapi.model.dto.BookDTO;
 import com.jszarski.bookapi.model.dto.BookRatingDTO;
 import com.jszarski.bookapi.service.BookService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@Log4j2
+@Slf4j
 @RestController
 @RequestMapping("/book")
 @RequiredArgsConstructor

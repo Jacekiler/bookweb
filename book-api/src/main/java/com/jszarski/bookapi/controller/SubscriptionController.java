@@ -3,12 +3,12 @@ package com.jszarski.bookapi.controller;
 import com.jszarski.bookapi.model.dto.SubscriptionDTO;
 import com.jszarski.bookapi.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Log4j2
+@Slf4j
 @RestController
 @RequestMapping("/subscription")
 @RequiredArgsConstructor

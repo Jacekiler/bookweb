@@ -3,7 +3,7 @@ package com.jszarski.bookapi.service;
 import com.jszarski.bookapi.client.BookServiceClient;
 import com.jszarski.bookapi.model.dto.SubscriptionDTO;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import static java.util.Collections.emptyList;
 
 @Service
 @RequiredArgsConstructor
-@Log4j2
+@Slf4j
 public class SubscriptionService {
 
     private final BookServiceClient bookServiceClient;
