@@ -1,19 +1,15 @@
-package com.jszarski.bookapi.model.dto;
+package com.jszarski.common.model.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BookDTO {
-    private UUID id;
+public class Recommendation {
     private String name;
     private String author;
     private String genre;
-    private int rateCount;
-    private Double ratingAvg;
+    private String ratingAvg;
 }

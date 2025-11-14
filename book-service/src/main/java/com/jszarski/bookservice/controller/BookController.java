@@ -1,10 +1,10 @@
 package com.jszarski.bookservice.controller;
 
 
-import com.jszarski.bookservice.model.dto.BookAddDTO;
-import com.jszarski.bookservice.model.dto.BookDTO;
-import com.jszarski.bookservice.model.dto.BookRatingDTO;
 import com.jszarski.bookservice.service.BookService;
+import com.jszarski.common.model.dto.BookAddDTO;
+import com.jszarski.common.model.dto.BookDTO;
+import com.jszarski.common.model.dto.BookRatingDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

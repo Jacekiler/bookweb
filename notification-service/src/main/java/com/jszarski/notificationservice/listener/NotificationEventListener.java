@@ -1,6 +1,6 @@
 package com.jszarski.notificationservice.listener;
 
-import com.jszarski.notificationservice.model.event.NotificationEvent;
+import com.jszarski.common.model.event.NotificationEvent;
 import com.jszarski.notificationservice.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

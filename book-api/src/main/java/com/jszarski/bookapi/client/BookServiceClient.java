@@ -1,9 +1,9 @@
 package com.jszarski.bookapi.client;
 
-import com.jszarski.bookapi.model.dto.BookAddDTO;
-import com.jszarski.bookapi.model.dto.BookDTO;
-import com.jszarski.bookapi.model.dto.BookRatingDTO;
-import com.jszarski.bookapi.model.dto.SubscriptionDTO;
+import com.jszarski.common.model.dto.BookAddDTO;
+import com.jszarski.common.model.dto.BookDTO;
+import com.jszarski.common.model.dto.BookRatingDTO;
+import com.jszarski.common.model.dto.SubscriptionDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

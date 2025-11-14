@@ -1,4 +1,4 @@
-package com.jszarski.notificationservice.model.event;
+package com.jszarski.common.model.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

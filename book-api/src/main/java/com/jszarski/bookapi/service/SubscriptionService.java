@@ -1,7 +1,7 @@
 package com.jszarski.bookapi.service;
 
 import com.jszarski.bookapi.client.BookServiceClient;
-import com.jszarski.bookapi.model.dto.SubscriptionDTO;
+import com.jszarski.common.model.dto.SubscriptionDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

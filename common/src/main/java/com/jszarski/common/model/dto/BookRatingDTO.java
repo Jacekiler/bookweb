@@ -1,4 +1,4 @@
-package com.jszarski.bookapi.model.dto;
+package com.jszarski.common.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

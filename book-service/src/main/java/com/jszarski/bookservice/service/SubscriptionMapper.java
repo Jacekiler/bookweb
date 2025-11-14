@@ -1,8 +1,8 @@
 package com.jszarski.bookservice.service;
 
-import com.jszarski.bookservice.model.dto.SubscriptionDTO;
-import com.jszarski.bookservice.model.dto.SubscriptionType;
 import com.jszarski.bookservice.model.entity.Subscription;
+import com.jszarski.common.model.dto.SubscriptionDTO;
+import com.jszarski.common.model.dto.SubscriptionType;
 import org.springframework.stereotype.Component;
 
 @Component

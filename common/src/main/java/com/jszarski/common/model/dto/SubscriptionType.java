@@ -1,4 +1,4 @@
-package com.jszarski.bookservice.model.dto;
+package com.jszarski.common.model.dto;
 
 public enum SubscriptionType {
     TOP_RATED,

@@ -1,8 +1,8 @@
 package com.jszarski.bookservice.service;
 
-import com.jszarski.bookservice.model.dto.BookAddDTO;
-import com.jszarski.bookservice.model.dto.BookDTO;
 import com.jszarski.bookservice.model.entity.Book;
+import com.jszarski.common.model.dto.BookAddDTO;
+import com.jszarski.common.model.dto.BookDTO;
 import org.springframework.stereotype.Component;
 
 @Component

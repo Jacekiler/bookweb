@@ -1,12 +1,14 @@
-package com.jszarski.bookapi.model.dto;
+package com.jszarski.common.model.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubscriptionDTO {

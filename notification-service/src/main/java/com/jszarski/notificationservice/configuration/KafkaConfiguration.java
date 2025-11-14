@@ -1,6 +1,6 @@
 package com.jszarski.notificationservice.configuration;
 
-import com.jszarski.notificationservice.model.event.NotificationEvent;
+import com.jszarski.common.model.event.NotificationEvent;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;

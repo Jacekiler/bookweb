@@ -1,7 +1,7 @@
 package com.jszarski.notificationservice.service;
 
 
-import com.jszarski.notificationservice.model.event.NotificationEvent;
+import com.jszarski.common.model.event.NotificationEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
