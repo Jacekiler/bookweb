@@ -1,13 +1,20 @@
 package com.jszarski.bookservice.service;
 
 import com.jszarski.bookservice.model.entity.Book;
+import com.jszarski.bookservice.model.entity.BookSubscription;
+import com.jszarski.bookservice.model.entity.BookSubscriptionId;
 import com.jszarski.bookservice.model.entity.Subscription;
+import com.jszarski.bookservice.repository.BookSubscriptionRepository;
 import com.jszarski.bookservice.repository.SubscriptionRepository;
 import com.jszarski.common.model.dto.SubscriptionType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -20,18 +27,27 @@ public class NotificationService {
     private final SubscriptionRepository subscriptionRepository;
     private final NotificationEventBuilder notificationEventBuilder;
     private final NotificationEventProducer notificationEventProducer;
+    private final BookSubscriptionRepository bookSubscriptionRepository;
 
     @Async
     public void checkNew(Book book) {
-        //todo save and check if this notification was already sent to this user
-        var subscriptionsToApply = subscriptionRepository.findAllByType(SubscriptionType.NEW.name())
-                .stream()
-                .filter(subscription -> matchesNewBook(book, subscription))
-                .toList();
-        subscriptionsToApply.stream()
-                .map(subscription -> notificationEventBuilder.build(subscription.getEmail(), book))
-                .forEach(notificationEventProducer::sendNewRecommendation);
 
+        List<BookSubscription> newBookSubscriptions = new ArrayList<>();
+        subscriptionRepository.findAllByType(SubscriptionType.NEW.name()).stream()
+                .filter(subscription -> matchesNewBook(book, subscription))
+                .forEach(subscription -> {
+                    var event = notificationEventBuilder.build(subscription.getEmail(), book);
+                    notificationEventProducer.sendNewRecommendation(event); // todo send batch kafka?
+                    var bookSubscription = new BookSubscription(
+                            new BookSubscriptionId(book.getId(), subscription.getId()),
+                            book,
+                            subscription,
+                            LocalDateTime.now()
+                    );
+                    newBookSubscriptions.add(bookSubscription);
+                });
+        log.info("Sent {} new book notifications", newBookSubscriptions.size());
+        bookSubscriptionRepository.saveAll(newBookSubscriptions);
     }
 
     private boolean matchesNewBook(Book book, Subscription subscription) {
@@ -41,14 +57,25 @@ public class NotificationService {
 
     @Async
     public void checkPopular(Book book) {
-        //todo save and check if this notification was already sent to this user
-        var subscriptionsToApply = subscriptionRepository.findAllByType(SubscriptionType.TOP_RATED.name())
-                .stream()
+        var sentSubscriptionsIds = bookSubscriptionRepository.findSubscriptionsIdsByBook(book.getId());
+
+        List<BookSubscription> newBookSubscriptions = new ArrayList<>();
+        subscriptionRepository.findAllByType(SubscriptionType.TOP_RATED.name()).stream()
                 .filter(subscription -> matchesPopularBook(book, subscription))
-                .toList();
-        subscriptionsToApply.stream()
-                .map(subscription -> notificationEventBuilder.build(subscription.getEmail(), book))
-                .forEach(notificationEventProducer::sendPopularRecommendation);
+                .filter(subscription -> !sentSubscriptionsIds.contains(subscription.getId()))
+                .forEach(subscription -> {
+                    var event = notificationEventBuilder.build(subscription.getEmail(), book);
+                    notificationEventProducer.sendPopularRecommendation(event); // todo send batch kafka?
+                    var bookSubscription = new BookSubscription(
+                            new BookSubscriptionId(book.getId(), subscription.getId()),
+                            book,
+                            subscription,
+                            LocalDateTime.now()
+                    );
+                    newBookSubscriptions.add(bookSubscription);
+                });
+        log.info("Sent {} popular book notifications", newBookSubscriptions.size());
+        bookSubscriptionRepository.saveAll(newBookSubscriptions);
     }
 
     private boolean matchesPopularBook(Book book, Subscription subscription) {

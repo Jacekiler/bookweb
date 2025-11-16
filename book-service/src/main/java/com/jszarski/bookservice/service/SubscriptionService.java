@@ -26,6 +26,7 @@ public class SubscriptionService {
     }
 
     public SubscriptionDTO subscribe(SubscriptionDTO subscriptionDTO) {
+        // todo validate subscription and check if already exists
         log.info("Adding subscription for email {}", subscriptionDTO.getEmail());
         var subscription = subscriptionMapper.fromDto(subscriptionDTO);
         var saved = subscriptionRepository.save(subscription);
