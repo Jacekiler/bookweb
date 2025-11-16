@@ -40,7 +40,7 @@ public class NotificationService {
                     notificationEventProducer.sendNewRecommendation(event); // todo send batch kafka?
                     var bookSubscription = new BookSubscription(
                             new BookSubscriptionId(book.getId(), subscription.getId()),
-                            book,
+                            book, // todo book and subscription necessary here?
                             subscription,
                             LocalDateTime.now()
                     );
@@ -68,7 +68,7 @@ public class NotificationService {
                     notificationEventProducer.sendPopularRecommendation(event); // todo send batch kafka?
                     var bookSubscription = new BookSubscription(
                             new BookSubscriptionId(book.getId(), subscription.getId()),
-                            book,
+                            book, // todo book and subscription necessary here?
                             subscription,
                             LocalDateTime.now()
                     );
