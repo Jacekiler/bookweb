@@ -15,7 +15,7 @@ public class EmailService {
 
     private final JavaMailSender javaMailSender;
 
-    public void send(NotificationEvent event) {
+    public void sendNewRecommendation(NotificationEvent event) {
         log.info("Sending recommendation to {}", event.getEmail());
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(event.getEmail());
@@ -23,6 +23,19 @@ public class EmailService {
         mailMessage.setText("Title: " + event.getRecommendation().getName() + "\n" +
                 "Author: " + event.getRecommendation().getAuthor() + "\n" +
                 "Genre: " + event.getRecommendation().getGenre());
+        javaMailSender.send(mailMessage);
+        log.info("Mail sent to {}", event.getEmail());
+    }
+
+    public void sendPopularRecommendation(NotificationEvent event) {
+        log.info("Sending recommendation to {}", event.getEmail());
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(event.getEmail());
+        mailMessage.setSubject("Popular book recommendation");
+        mailMessage.setText("Title: " + event.getRecommendation().getName() + "\n" +
+                "Author: " + event.getRecommendation().getAuthor() + "\n" +
+                "Genre: " + event.getRecommendation().getGenre() + "\n " +
+                "Rating: " + event.getRecommendation().getRatingAvg());
         javaMailSender.send(mailMessage);
         log.info("Mail sent to {}", event.getEmail());
     }

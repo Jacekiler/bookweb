@@ -58,6 +58,7 @@ public class BookService {
         var book = bookRepository.findByNameAndAuthor(bookRatingDTO.getName(), bookRatingDTO.getAuthor())
                 .orElseThrow(() -> new BookNotFoundException(String.format("Book %s of author %s does not exist", bookRatingDTO.getName(), bookRatingDTO.getAuthor())));
         updateRating(bookRatingDTO, book);
+        notificationService.checkPopular(book);
     }
 
     private void updateRating(BookRatingDTO bookRatingDTO, Book book) {

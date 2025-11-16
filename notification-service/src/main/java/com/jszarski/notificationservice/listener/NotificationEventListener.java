@@ -14,13 +14,24 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class NotificationEventListener {
 
+    private static final String NEW_RECOMMENDATION_TOPIC = "new-recommendations";
+    private static final String POPULAR_RECOMMENDATION_TOPIC = "popular-recommendations";
+
     private final EmailService emailService;
 
-    @KafkaListener(topics = "notifications",
+    @KafkaListener(topics = NEW_RECOMMENDATION_TOPIC,
             groupId = "${spring.kafka.group-id}",
             containerFactory = "notificationEventConcurrentKafkaListenerContainerFactory")
-    public void listener(@Header(KafkaHeaders.RECEIVED_KEY) String key, NotificationEvent event){
+    public void listenerNewRecommendation(@Header(KafkaHeaders.RECEIVED_KEY) String key, NotificationEvent event){
         log.info("Received event with key: {}", key);
-        emailService.send(event);
+        emailService.sendNewRecommendation(event);
+    }
+
+    @KafkaListener(topics = POPULAR_RECOMMENDATION_TOPIC,
+            groupId = "${spring.kafka.group-id}",
+            containerFactory = "notificationEventConcurrentKafkaListenerContainerFactory")
+    public void listenerPopularRecommendation(@Header(KafkaHeaders.RECEIVED_KEY) String key, NotificationEvent event){
+        log.info("Received event with key: {}", key);
+        emailService.sendPopularRecommendation(event);
     }
 }

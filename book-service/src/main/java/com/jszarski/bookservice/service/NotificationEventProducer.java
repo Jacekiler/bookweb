@@ -13,15 +13,22 @@ import java.util.UUID;
 @Component
 public class NotificationEventProducer {
 
-    private static final String TOPIC = "notifications";
+    private static final String NEW_RECOMMENDATION_TOPIC = "new-recommendations";
+    private static final String POPULAR_RECOMMENDATION_TOPIC = "popular-recommendations";
 
     private final KafkaTemplate<UUID, NotificationEvent> kafkaTemplate;
 
-    public void send(NotificationEvent event) {
+    public void sendNewRecommendation(NotificationEvent event) {
         var key = UUID.randomUUID();
-        log.info("Sending NotificationEvent to topic \"{}\" with key \"{}\"", TOPIC, key);
-        kafkaTemplate.send(TOPIC, key, event);
+        log.info("Sending NotificationEvent to topic \"{}\" with key \"{}\"", NEW_RECOMMENDATION_TOPIC, key);
+        kafkaTemplate.send(NEW_RECOMMENDATION_TOPIC, key, event);
         log.info("Event {} sent.", key);
     }
 
+    public void sendPopularRecommendation(NotificationEvent event) {
+        var key = UUID.randomUUID();
+        log.info("Sending NotificationEvent to topic \"{}\" with key \"{}\"", POPULAR_RECOMMENDATION_TOPIC, key);
+        kafkaTemplate.send(POPULAR_RECOMMENDATION_TOPIC, key, event);
+        log.info("Event {} sent.", key);
+    }
 }
