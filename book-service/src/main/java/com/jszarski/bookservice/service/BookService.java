@@ -40,7 +40,7 @@ public class BookService {
         }
         var book = bookMapper.fromAddDto(bookAddDTO);
         var saved = bookRepository.save(book);
-        notificationService.checkNew(saved);
+        notificationService.sendNewNotifications(saved);
         return bookMapper.toBookDto(saved);
     }
 
@@ -58,7 +58,7 @@ public class BookService {
         var book = bookRepository.findByNameAndAuthor(bookRatingDTO.getName(), bookRatingDTO.getAuthor())
                 .orElseThrow(() -> new BookNotFoundException(String.format("Book %s of author %s does not exist", bookRatingDTO.getName(), bookRatingDTO.getAuthor())));
         updateRating(bookRatingDTO, book);
-        notificationService.checkPopular(book);
+        notificationService.sendPopularNotifications(book);
     }
 
     private void updateRating(BookRatingDTO bookRatingDTO, Book book) {
