@@ -11,7 +11,7 @@ import java.util.UUID;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class NotificationEventProducer {
+public class NotificationEventSender {
 
     private static final String NEW_RECOMMENDATION_TOPIC = "new-recommendations";
     private static final String POPULAR_RECOMMENDATION_TOPIC = "popular-recommendations";
