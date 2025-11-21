@@ -54,6 +54,7 @@ public class BookService {
 
     @Transactional
     public void rate(BookRatingDTO bookRatingDTO) {
+        // todo match rating with user - no duplicates of rates from single user
         log.info("Updating rating for book {}", bookRatingDTO.getName());
         var book = bookRepository.findByNameAndAuthor(bookRatingDTO.getName(), bookRatingDTO.getAuthor())
                 .orElseThrow(() -> new BookNotFoundException(String.format("Book %s of author %s does not exist", bookRatingDTO.getName(), bookRatingDTO.getAuthor())));
