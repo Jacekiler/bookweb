@@ -1,6 +1,16 @@
 version: "3.9"
 
 services:
+  book-service:
+    build: ./book-service
+    ports:
+      - "${BOOK_SERVICE_PORT}:8081"
+    env_file:
+      - bs.env
+  notification-service:
+    build: ./notification-service
+    env_file:
+      - ns.env
   db:
     image: postgres:15
     container_name: book_db
